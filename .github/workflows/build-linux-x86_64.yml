@@ -89,37 +89,15 @@ jobs:
       uses: gradle/gradle-build-action@v3
 
     - name: Build Linux x86_64 minimal binaries
-      run: ./gradlew app:linuxX64Binaries -PMINIMAL --stacktrace
-
-    - name: Strip release binary
-      run: $TOOLCHAIN/bin/x86_64-unknown-linux-gnu-strip app/build/bin/linuxX64/releaseExecutable/*.kexe
-
+      run: ./gradlew jvmJar
     - name: Upload debug binary
       uses: actions/upload-artifact@v3
       with:
-        name: spms-minimal-linux-x86_64-debug
-        path: app/build/bin/linuxX64/debugExecutable/*.kexe
+        name: test app
+        path: app/build/*
 
-    - name: Upload release binary
+      name: Upload debug binary
       uses: actions/upload-artifact@v3
       with:
-        name: spms-minimal-linux-x86_64-release
-        path: app/build/bin/linuxX64/releaseExecutable/*.kexe
-
-    - name: Build Linux x86_64 full binaries
-      run: ./gradlew app:linuxX64Binaries --stacktrace
-
-    - name: Strip release binary
-      run: $TOOLCHAIN/bin/x86_64-unknown-linux-gnu-strip app/build/bin/linuxX64/releaseExecutable/*.kexe
-
-    - name: Upload debug binary
-      uses: actions/upload-artifact@v3
-      with:
-        name: spms-linux-x86_64-debug
-        path: app/build/bin/linuxX64/debugExecutable/*.kexe
-
-    - name: Upload release binary
-      uses: actions/upload-artifact@v3
-      with:
-        name: spms-linux-x86_64-release
-        path: app/build/bin/linuxX64/releaseExecutable/*.kexe
+        name: test library
+        path: library/build/*
