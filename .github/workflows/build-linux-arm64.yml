@@ -21,8 +21,7 @@ jobs:
     steps:
     - run: echo "TOOLCHAIN=$GITHUB_WORKSPACE/toolchain" >> $GITHUB_ENV
     - run: echo "SPMS_ARCH=arm64" >> $GITHUB_ENV
-
-    - run: apt update
+    
     - run: apt install -y nodejs
       if: env.ACT
 
@@ -133,13 +132,13 @@ jobs:
       run: $TOOLCHAIN/bin/aarch64-unknown-linux-gnu-strip app/build/bin/linuxArm64/releaseExecutable/*.kexe
 
     - name: Upload debug binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: spms-minimal-linux-arm64-debug
         path: app/build/bin/linuxArm64/debugExecutable/*.kexe
 
     - name: Upload release binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: spms-minimal-linux-arm64-release
         path: app/build/bin/linuxArm64/releaseExecutable/*.kexe
@@ -151,13 +150,13 @@ jobs:
       run: $TOOLCHAIN/bin/aarch64-unknown-linux-gnu-strip app/build/bin/linuxArm64/releaseExecutable/*.kexe
 
     - name: Upload debug binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: spms-linux-arm64-debug
         path: app/build/bin/linuxArm64/debugExecutable/*.kexe
 
     - name: Upload release binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: spms-linux-arm64-release
         path: app/build/bin/linuxArm64/releaseExecutable/*.kexe
