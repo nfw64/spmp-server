@@ -37,7 +37,8 @@ jobs:
       run: $JAVA_HOME/bin/java --version
 
     - run: apt-get install -y --reinstall git make wget pkg-config libmpv-dev libcurl4-openssl-dev libayatana-appindicator3-dev
-
+      if: env.ACT
+      
     - uses: actions/checkout@v3
       with:
         submodules: recursive
