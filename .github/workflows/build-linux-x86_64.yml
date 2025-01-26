@@ -96,7 +96,7 @@ jobs:
         name: test app
         path: app/build/*
 
-      name: Upload debug binary
+    - name: Upload debug binary
       uses: actions/upload-artifact@v3
       with:
         name: test library
